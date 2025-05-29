@@ -1,6 +1,6 @@
  import { pool } from '../db.js';
 
- export const getinvestments = async (req, res) => {
+ export const getinvestment = async (req, res) => {
  
      const {rows} = await pool.query('SELECT * FROM investment')
  
@@ -10,7 +10,7 @@
  export const getinvestment = async (req, res) => {
     const {id} = req.params;
 
-    const {rows} = await pool.query('SELECT * FROM investment WHERE id_investment = $1', [id]);
+    const {rows} = await pool.query('SELECT * FROM investment WHERE investment_id = $1', [id]);
 
 
     if (rows.length === 0) return res.status(404).json({message: 'Usuario no encontrado'})
@@ -22,7 +22,7 @@ export const createinvestment = async (req, res) => {
     try {
         const data = req.body;
 
-        const {rows} = await pool.query('INSERT INTO investment (date, total, id_provider) VALUES ($1, $2, $3) returning *', [data.date, data.total, data.id_provider])
+        const {rows} = await pool.query('INSERT INTO investment (date, total, id_provider) VALUES ($0, $2, $3) returning *', [data.date, data.total, data.id_provider])
 
         res.json(rows[0])
 

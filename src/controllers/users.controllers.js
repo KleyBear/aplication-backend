@@ -8,7 +8,7 @@
  }
  
  export const getuser = async (req, res) => {
-    const {id} = req.params;
+    const {id} = req;
 
     const {rows} = await pool.query('SELECT * FROM users WHERE id_users = $1', [id]);
 
@@ -22,7 +22,7 @@ export const createusers = async (req, res) => {
     try {
         const data = req.body;
 
-        const {rows} = await pool.query('INSERT INTO users (name, email, password, phone, birthday ) VALUES ($1, $2, $3, $4, $5) returning *', [data.name, data.email, data.password, data.phone, data.birthday])
+        const {rows} = await pool.query('INSERT INTO user (name, email, password, phone, birthday ) VALUES ($1, $2, $3, $4, $5) returning *', [data.name, data.email, data.password, data.phone, data.birthday])
 
         res.json(rows[0])
 
@@ -43,7 +43,7 @@ export const createusers = async (req, res) => {
 export const deleteusers = async (req, res) => {
     const {id} = req.params;
 
-    const {rowCount} = await pool.query('DELETE FROM users WHERE id_users = $1 returning *', [id])
+    const {rowCount} = await pool.query('DELETE FROM users WHER id_users = $1 returning *', [id])
 
     if (rowCount === 0) return res.status(404).json({message: 'Usuario no encontrado'})
 
