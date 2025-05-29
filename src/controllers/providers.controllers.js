@@ -22,7 +22,7 @@ export const createprovider = async (req, res) => {
     try {
         const data = req.body;
 
-        const {rows} = await pool.query('INSERT INTO provider (name, phone) VALUES ($1, $2) returning *', [data.name, data.phone])
+        const {rows} = await pool.query('INSERT INTO provider (name, number) VALUES ($1, $2) returning *', [data.name, data.number])
 
         res.json(rows[0])
 
@@ -54,7 +54,7 @@ export const updateprovider = async (req, res) => {
     const {id} = req.params
     const data = req.body
 
-    const {rows} = await pool.query('UPDATE provider SET name = $1, phone = $2, WHERE id_provider = $3', [data.name, data.phone, id])
+    const {rows} = await pool.query('UPDATE provider SET name = $1, number = $2 WHERE id_provider = $3 returning *', [data.name, data.number, id])
 
 
     res.json(rows[0])

@@ -3,7 +3,7 @@ import { createprovider, deleteprovider, getprovider, getproviders, updateprovid
 
 const router = Router();
 
-router.get('/provider', getproviders)
+router.get('/providers', getproviders)
 
 router.get('/provider/:id', getprovider)
 

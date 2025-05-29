@@ -7,7 +7,7 @@ router.get('/investment_details', getinvestment_details)
 
 router.get('/investment_detail/:id', getinvestment_detail)
 
-router.get('/investment/:id/investment_detail', getinvestment_detail2)
+router.get('/investment/:id/details', getinvestment_detail2)
 
 router.post('/investment_detail', createinvestment_detail)
 

@@ -17,6 +17,5 @@ app.use(investmentsRoutes);
 app.use(investmentDetailsRoutes);
 
 app.listen(PORT);
-console.log('hola')
-
+console.log('hola') 
 
